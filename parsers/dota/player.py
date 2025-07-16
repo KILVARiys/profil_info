@@ -27,31 +27,23 @@ steam_id = 1136889395  # Ваш Steam ID
 query = """
 query ($steamAccountId: Long!) {
   player(steamAccountId: $steamAccountId) {
-    matches(request: { take: 15 }) {
-      series {
-        node {
-          matches {
-            id
-            gameMode
-            actualRank
-            averageRank
-            winRates
-            players {
-              hero {
-                id
-                name
-                displayName
-              }
-              kills
-              deaths
-              assists
-              goldPerMinute
-              experiencePerMinute
-            }
-          }
+    matches(request: {take: 10}) {
+      id
+      gameMode
+      players(steamAccountId: $steamAccountId) {
+        hero {
+          id
+          displayName
         }
+        kills
+        deaths
+        assists
+        goldPerMinute
+        experiencePerMinute
       }
     }
+    firstMatchDate
+    lastMatchDate
   }
 }
 """
@@ -68,19 +60,22 @@ if response.status_code == 200:
     data = response.json()
     player_data = data["data"]["player"]
 
-    print(f"Player ID: {player_data['id']}")
-    print(f"Name: {player_data['name']}")
-    print(f"Steam ID: {player_data['steamAccountId']}")
-    print(f"Rank Tier: {player_data['rankTier']}")
-    print(f"Competitive Rank: {player_data['competitiveRank']}")
+    print(f"Player ID: {player_data.get('id', 'N/A')}")
+    print(f"Steam ID: {player_data.get('steamAccountId', 'N/A')}")
 
-    for match in player_data['matches']['edges']:
+    matches = player_data.get("matches", [])
+    for match in matches:
         print("\nMatch:")
-        print(f"  Match ID: {match['node']['matchId']}")
-        print(f"  Hero: {match['node']['hero']['name']}")
-        print(f"  Kills: {match['node']['player']['kills']}")
-        print(f"  Deaths: {match['node']['player']['deaths']}")
-        print(f"  Assists: {match['node']['player']['assists']}")
+        print(f"  Match ID: {match.get('id', 'N/A')}")
+        print(f"  Game Mode: {match.get('gameMode', 'N/A')}")
+
+
+        player_stats = match.get("players", [{}])[0]
+        hero_info = player_stats.get("hero", {})
+        print(f"  Hero: {hero_info.get('displayName', 'N/A')}")
+        print(f"  Kills: {player_stats.get('kills', 'N/A')}")
+        print(f"  Deaths: {player_stats.get('deaths', 'N/A')}")
+        print(f"  Assists: {player_stats.get('assists', 'N/A')}")
 else:
     print(f"Ошибка: {response.status_code}")
     print(response.text)

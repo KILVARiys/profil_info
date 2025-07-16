@@ -1,4 +1,5 @@
 import requests
+import re
 from bs4 import BeautifulSoup
 
 full_url_steam = 'https://steamcommunity.com/profiles/76561199097155123'
@@ -13,18 +14,8 @@ response = requests.get(url_steam)
     
 if response.status_code == 200:
     soup = BeautifulSoup(response.text, 'html.parser')
-    account_id_finder = soup.find('td', class_='span2').find_next('td').get_text(strip=True)
-    print('Найдено')
-    print(account_id_finder)
+    account_id_finder = soup.findAll('td')[3].text  # Преобразуем Tag в строку
+    numbers = re.findall(r'\d+', account_id_finder)
+    print(numbers[0])  # Выведет: 1136889395    
 else:
     print(f"Ошибка: {response.status_code}")
-    
-from bs4 import BeautifulSoup
-
-def parse_account_id(html):
-    soup = BeautifulSoup(html, 'html.parser')
-    for row in soup.find_all('tr'):
-        tds = row.find_all('td')
-        if len(tds) >= 2 and tds[0].get_text(strip=True) == 'AccountID':
-            return tds[1].get_text(strip=True).split()[0]
-    return None
