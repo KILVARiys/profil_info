@@ -2,7 +2,7 @@ import requests
 import re
 from bs4 import BeautifulSoup
 
-full_url_steam = 'https://steamcommunity.com/profiles/76561199097155123'
+full_url_steam = input("Введите url steam: ")
 # Извлечение ID профиля из ссылки
 result = ''.join(c if c.isdigit() else ' ' for c in full_url_steam).split()
 short_url_steam = [int(item) for item in result]
