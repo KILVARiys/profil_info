@@ -1,0 +1,44 @@
+QListWidget {
+    color: #FFFFFF;
+    background-color: #33373B;
+}
+
+QListWidget::item {
+    height: 50px;
+}
+
+QListWidget::item:selected {
+    background-color: #d3d3d3;
+}
+
+QLabel {
+    background-color: #33373B;
+    qproperty-alignment: AlignCenter;
+}
+
+QPushButton {
+    background-color:rgb(218, 104, 28);
+    padding: 20px;
+    font-size: 18px;
+}
+
+#search_button {
+    background-color: #2ABf9E;
+    color: black;
+    min-width: 80px;
+    min-height: 30px;
+    padding: 4px 8px;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 12px;
+    border: 1px solid #25A484;
+}
+
+QLineEdit {
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    background-color: #2E323A;
+    color: black;
+}

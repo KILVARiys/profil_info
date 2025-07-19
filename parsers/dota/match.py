@@ -1,7 +1,7 @@
 import requests
 
 url = "https://api.stratz.com/graphql"
-token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTdWJqZWN0IjoiNDM1MTcxMTEtOTI0NC00Y2EwLTkwNTAtZmMwZjJiYTBkN2JlIiwiU3RlYW1JZCI6IjExMzY4ODkzOTUiLCJuYmYiOjE3NTE1NjQwODgsImV4cCI6MTc4MzEwMDA4OCwiaWF0IjoxNzUxNTY0MDg4LCJpc3MiOiJodHRwczovL2FwaS5zdHJhdHouY29tIn0.xuTitlm6DC-hytX9m2npjNQLUEWM-qcokMMhNDcDLZw"  # Вставьте свой API-ключ
+token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJTdWJqZWN0IjoiNDM1MTcxMTEtOTI0NC00Y2EwLTkwNTAtZmMwZjJiYTBkN2JlIiwiU3RlYW1JZCI6IjExMzY4ODkzOTUiLCJBUElVc2VyIjoidHJ1ZSIsIm5iZiI6MTc1Mjc3MzY1OSwiZXhwIjoxNzg0MzA5NjU5LCJpYXQiOjE3NTI3NzM2NTksImlzcyI6Imh0dHBzOi8vYXBpLnN0cmF0ei5jb20ifQ.wYHXsaB3pHbYf2ceXn9gUrhxcbokFFEzr0i5b2DtVa0"  # Вставьте свой API-ключ
 headers = {
     "User-Agent": "STRATZ_API",
     "Authorization": f"Bearer {token}",

@@ -21,12 +21,16 @@ time.sleep(10)  # Ждём загрузки страницы
 try:
     # Извлечение данных: поиск элемента по CSS-селектору
     print("Извлечение данных со страницы...")
-    kd_element = driver.find_element(By.CSS_SELECTOR, ".p-row.js-link")
-    # Полученные данные
-    kd = kd_element.text
+    matchs_element = driver.find_elements(By.CSS_SELECTOR, ".p-row.js-link")
+    
+    limited_matches = matchs_element[:8]
+        
+    # Вывод количества найденных элементов
+    print(f"Найдено элементов: {len(matchs_element)}")
 
-    # Вывод данных
-    print(f"Статистика игрока (KD): {kd}")
+    # Вывод текста каждого элемента
+    for i, element in enumerate(limited_matches, start=1):
+        print(f"Матч {i}: {element.text}")
 
 except Exception as e:
     print(f"Ошибка при извлечении данных: {e}")

@@ -16,6 +16,6 @@ if response.status_code == 200:
     soup = BeautifulSoup(response.text, 'html.parser')
     account_id_finder = soup.findAll('td')[3].text  # Преобразуем Tag в строку
     numbers = re.findall(r'\d+', account_id_finder)
-    print(numbers[0])  # Выведет: 1136889395    
+    print(numbers[0])
 else:
     print(f"Ошибка: {response.status_code}")
