@@ -9,7 +9,7 @@ from PySide6.QtWidgets import (
     QHBoxLayout,
     QLineEdit
 )
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QSize
 from PySide6.QtGui import QColor, QIcon
 
 
@@ -23,7 +23,8 @@ class Widget(QWidget):
 
         # Создание QListWidget с элементами
         menu_widget = QListWidget()
-
+        menu_widget.setIconSize(QSize(48, 48))
+        
         cs = QListWidgetItem(" CS 2")
         cs.setIcon(QIcon(icon_path + "cs2.jpg"))
         cs.setBackground(QColor("#CC8400"))
